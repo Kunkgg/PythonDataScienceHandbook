@@ -1,0 +1,10 @@
+== NumPy
+
+http://www.numpy.org
+
+.Get start with NumPy
+[source, python]
+----
+# import numpy
+import numpy as np
+----

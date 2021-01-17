@@ -1,0 +1,33 @@
+= Python Data Science Handbook
+:author: Goukun <goukun07@gmail.com>
+:experimental:
+:date: 2021-01-15
+:toc:
+:library: Asciidoctor
+:sectnums:
+:sectnumlevels: 3
+:leveloffset: 1.
+ifdef::asciidoctor[]
+:source-highlighter: coderay
+endif::asciidoctor[]
+:idprefix:
+// :stylesheet: ../../resources/asciidoctor.css
+:imagesdir: images
+:includesdir: includes
+//:title-logo-image: image:logo.png[pdfwidth=3.00in,align=center]
+//:backend: docbook45
+//:backend: html5
+//:doctype: book
+// :sectids!:
+:plus: &#43;
+//:revealjsdir: ../../resources/reveal.js
+//:revealjs_theme: black
+// available themes: black beige blood league moon night serif simple sky solarized white
+
+// refs
+:url-github: https://github.com/Kunkgg
+//:url-blog: http-to-my-blog
+
+include::includes/01-IPython.adoc[]
+
+include::includes/02-NumPy.adoc[]

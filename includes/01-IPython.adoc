@@ -1,0 +1,184 @@
+== IPython
+
+=== Help and Documentation in IPython
+
+==== Accessing Documentation with `?` and `??`
+
+    ?      # help
+    ??     # help in detail, include source code
+
+==== Tab-completion
+
+. Tab-completion of object contents
+. Tab-completion when importing
+. Tab-completion whith wildcard matching
+
+    In [10]: *Warning?
+    BytesWarning                  RuntimeWarning
+    DeprecationWarning            SyntaxWarning
+    FutureWarning                 UnicodeWarning
+    ImportWarning                 UserWarning
+    PendingDeprecationWarning     Warning
+    ResourceWarning
+
+    In [11]: str.*find*?
+    str.find
+    str.rfind
+
+=== Keyboard Shortcuts in IPython Shell
+
+|===
+|Keystroke |Action
+
+|kbd:[Ctrl+a]
+|Move cursor to the beginning of the line
+
+|kbd:[Ctrl+e]
+|Move cursor to the end of the line
+
+|kbd:[Ctrl+u]
+|Cut text from beginning of line to cursor
+
+|kbd:[Ctrl+r]
+|Reverse-search through command history
+|===
+
+
+=== IPython Magic Commands
+
+Prefixed by `%` and `%%`
+
+* `%` for single line of input
+* `%%` for cell, multiple lines of input
+
+.Magic Commands Examples
+====
+`%paste` and `%cpaste`:: paste from clipboard
+`%run`:: run source code file
++
+[source, python]
+----
+# file: myscript.py
+
+def square(x):
+    """square a number"""
+    return x ** 2
+
+for N in range(1, 4):
+    print(N, "squared is", square(N))
+----
++
+.run `myscript.pyt` by `%run` magic command
+----
+In [6]: %run myscript.py
+1 squared is 1
+2 squared is 4
+3 squared is 9
+----
+`%timeit` and `%%timeit`:: profiling and timing code
+`%magic`:: documentation of magic commands
+`%lsmagic`:: list magic commands
+====
+
+=== Input and Output History
+
+==== `In` and `Out` Objects
+
+`In`:: a list, records input history strings
+`Out`:: a dict, key is the number of input, value is the output.
+
+==== Underscore Shortcuts and Previous Outputs
+
+`_`:: previous output
+`_X`:: a shorthand for `Out[X]`
++
+----
+In [12]: Out[2]
+Out[12]: 0.9092974268256817
+
+In [13]: _2
+Out[13]: 0.9092974268256817
+----
+`_iX`:: a shorthand for `In[X]`
+
+
+==== Suppressing Output
+
+add a semicolon to the end of line
+
+==== Related Magic Commands
+
+. `%history` or `hist`
+. `%rerun`
+. `%save`
+
+=== IPython and Shell Commands
+
+.Run shell Commands in IPython
+----
+In [1]: !ls
+myproject.txt
+
+In [2]: !pwd
+/home/jake/projects/myproject
+
+In [3]: !echo "printing from the shell"
+printing from the shell
+----
+
+.Passing Values from the Shell
+----
+In [4]: contents = !ls
+
+In [5]: print(contents)
+['myproject.txt']
+
+In [6]: directory = !pwd
+
+In [7]: print(directory)
+['/Users/jakevdp/notebooks/tmp/myproject']
+
+In [8]: type(directory)
+IPython.utils.text.SList
+# The type like a Python list, but has additional functionality.
+# * .l (or .list) : value as list (the list itself).
+# * .n (or .nlstr): value as a string, joined on newlines.
+# * .s (or .spstr): value as a string, joined on spaces.
+# * .p (or .paths): list of path objects (requires path.py package)
+----
+
+.Passing Values to the Shell
+----
+In [9]: message = "hello from Python"
+
+In [10]: !echo {message}
+hello from Python
+----
+
+=== Erros and Debugging
+
+`%xmode`:: Set mode of traceback information. Include 3 kinds of mode:
++
+. Plain
+. Context
+. Verbose
+
+`ipdb`:: The IPython-enhanced version of `pdb`
++
+. `%debug`
+. `%pdb on`
+
+=== Profiling and Timing Code
+
+* `%time`: Time the execution of a single statement
+* `%timeit`: Time repeated execution of a single statement for more accuracy
+* `%prun`: Run code with the profiler
+* `%lprun`: Run code with the line-by-line profiler
+* `%memit`: Measure the memory use of a sighle statement
+* `%mprun`: Run code with the line-by-line memory profiler
+
+[CAUTION]
+====
+`%prun` and `%lprun` require `line-profiler` extension +
+`%memit` and `%mprun` require `memory-profiler` extension
+====
