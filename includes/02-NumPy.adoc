@@ -8,3 +8,45 @@ http://www.numpy.org
 # import numpy
 import numpy as np
 ----
+
+=== Understanding Data Types in Python
+
+Python is a dynamic typing language.
+Languages like C or Java are statically-typed.
+The main difference:
+
+* In C, data types of each variable are explicitly declared.
++
+[source, c]
+----
+/* C code */
+int result = 0;
+for(int i=0; i<100; i++){
+    result += i;
+}
+----
+* In Python, types are dynamic inferred.
++
+[source, python]
+----
+# Python code
+result = 0
+for i in range(100):
+    result += i
+----
+* In Python, we can switch the data types of each variable dynamically. +
+In C, the data types are fixed after declaring each variable.
+If you try to switch data types of a variable after declaring in C,
+it would lead (depending on complier settings) to a compliantion error or other
+unintented results.
++
+[source]
+----
+# Python code
+x = 4
+x = "four"
+
+/* C code */
+int x = 4;
+x = "four";  // FAILS
+----
